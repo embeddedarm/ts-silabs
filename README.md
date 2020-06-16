@@ -1,5 +1,5 @@
 # ts-silabs
-Misc software and routines for the TS silabs supervisory microcontroller.  In `silabs.c` the main function is
+Misc software and routines for the TS silabs supervisory microcontroller.  These routines are intended to work equally in uboot, linux userspace, or even DOS.  In `silabs.c` the main function is
 ```c
 int64_t silab_cmd(int argc, char *const argv[])
 ```
@@ -50,4 +50,13 @@ static const char *wdog_feed[] = {"silab", "wdog", "feed"};
 silab_cmd(3, wdog_feed);
 ```
 
-The LISP routines are a work-in-progress but represent a LISP translation of the above silabs.c that also does a bit more.
+The LISP routines are a work-in-progress but represent a LISP translation of the above silabs.c that also does a bit more.  They require some additional quicklisp systems.
+
+In `silabs.c` there is a porting layer consisting of 3 routines, 
+
+```c
+int8_t i2c_eeprom_read(uint8_t adr, uint16_t subadr, uint8_t *buf, int len);
+int8_8 i2c_eeprom_write(uint8_t adr, uint16_t subadr, uint8_t *buf, int len);
+int wait_hook(int); /* sleep for 100ms */
+```
+
