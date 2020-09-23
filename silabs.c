@@ -538,6 +538,7 @@ static uint8_t silab_scaps_discharge_pct(void) {
 /* Sleeps CPU, FPGA, and uC.  About 13ma on 2/23/2018. */
 static void silab_sleep(uint32_t ms) {
   uint8_t buf[5];
+  if (ms < 1000) ms = 1000;
   if (ms % 10)
     ms = (ms / 10) + 1;
   else
